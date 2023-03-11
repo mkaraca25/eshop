@@ -2,8 +2,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import {Header,Footer} from "./components/index"
 import Cart from "./pages/cart/Cart";
-import {Home,Contact} from "./pages";
+import {Home,Contact,Login,Register,Reset} from "./pages";
 import OrderHistory from "./pages/orderHistory/OrderHistory";
+import { ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 
 
@@ -12,14 +14,14 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {/* <ToastContainer /> */}
+        <ToastContainer />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
-          {/* <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/reset" element={<Reset />} /> */}
+          <Route path="/reset" element={<Reset />} />
 
           {/* <Route
             path="/admin/*"
