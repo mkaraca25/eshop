@@ -11,6 +11,7 @@ import {
   REMOVE_ACTIVE_USER,
   SET_ACTIVE_USER,
 } from "../../redux/slice/authSlice";
+import ShowOnLogin, { ShowOnLogout } from '../hiddenLink/HiddenLink'
 
 const logo=(
   <div className={styles.logo}>
@@ -37,7 +38,7 @@ const Header = () => {
   useEffect(() => {
     onAuthStateChanged(auth,(user) =>{
       if (user) {
-        // console.log(user);
+         //console.log(user);
         if (user.displayName == null) {
           const u1 = user.email.slice(0, -10);
           const uName = u1.charAt(0).toUpperCase() + u1.slice(1);
@@ -45,7 +46,7 @@ const Header = () => {
         } else {
           setDisplayName(user.displayName);
         }
-
+        
         dispatch(
           SET_ACTIVE_USER({
             email: user.email,
@@ -99,14 +100,19 @@ const Header = () => {
           </ul>
           <div className={styles["header-right"]} onClick={hideMenu}>
             <span className={styles.links}>
-              <NavLink to="/login"  className={activeLink}>Login</NavLink>
-              <a href="#home">
+              <ShowOnLogout>
+              <NavLink to="/login"  className={activeLink}>Login</NavLink></ShowOnLogout>
+              <ShowOnLogin>
+              <a href="#home" style={{color:'#ff7722'}}>
                 <FaUserCircle size={16}/>
                 Hi, {displayName}
-              </a>
-              <NavLink to="/register" className={activeLink}>Register</NavLink>
-              <NavLink to="/order-history" className={activeLink}>My Orders</NavLink>
-              <NavLink to="/" onClick={logoutUser}>Logout</NavLink>
+              </a></ShowOnLogin>
+              <ShowOnLogin>
+              <NavLink to="/register" className={activeLink}>Register</NavLink></ShowOnLogin>
+              <ShowOnLogin>
+              <NavLink to="/order-history" className={activeLink}>My Orders</NavLink></ShowOnLogin>
+              <ShowOnLogin>
+              <NavLink to="/" onClick={logoutUser}>Logout</NavLink></ShowOnLogin>
             </span>
            {cart}
           </div>

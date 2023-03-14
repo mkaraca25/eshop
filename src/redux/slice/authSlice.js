@@ -16,13 +16,13 @@ const authSlice = createSlice({
       const { email, userName, userID } = action.payload;
       state.isLoggedIn = true;
       state.email = email;
-      state.userName = userName;
+      state.useName = userName;
       state.userID = userID;
     },
     REMOVE_ACTIVE_USER(state, action) {
       state.isLoggedIn = false;
       state.email = null;
-      state.userName = null;
+      state.useName = null;
       state.userID = null;
     },
   },

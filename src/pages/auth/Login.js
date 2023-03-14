@@ -12,6 +12,7 @@ import {
 import { auth } from "../../firebase/config";
 import { toast } from "react-toastify";
 import Loader from "../../components/loader/Loader";
+import { useSelector } from "react-redux";
 
 
 const Login = () => {
@@ -22,12 +23,7 @@ const Login = () => {
   
   const navigate = useNavigate();
 
-//   const redirectUser = () => {
-//     // if (previousURL.includes("cart")) {
-//     //   return navigate("/cart");
-//     // }
-//     navigate("/");
-//   };
+  
 
   const loginUser = (e) => {
     e.preventDefault();
@@ -38,8 +34,7 @@ const Login = () => {
         // const user = userCredential.user;
         setIsLoading(false);
         toast.success("Login Successful...");
-        navigate("/")
-        // redirectUser();
+        
       })
       .catch((error) => {
         setIsLoading(false);
@@ -47,14 +42,14 @@ const Login = () => {
       });
   };
 
-  // Login with Goooglr
+  // Login with Gooogle
   const provider = new GoogleAuthProvider();
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         // const user = result.user;
         toast.success("Login Successfully");
-        // redirectUser();
+        navigate("/")
       })
       .catch((error) => {
         toast.error(error.message);
